@@ -1,7 +1,7 @@
 
 ### COMMON ###
 config_local.yml
-app/logs/*
+*/app/logs/*
 !.gitkeep
 target
 .DS_Store

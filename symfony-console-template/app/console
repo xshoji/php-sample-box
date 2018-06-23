@@ -1,0 +1,74 @@
+<?php
+/**
+ * CLI Entrypoint
+ * 
+ * @author nsgeorge
+ * @license MIT (see LICENSE.md)
+ */
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Console\Input\ArgvInput;
+
+// Define environment
+$env = 'dev'; // Default environment
+// Get --env parameter
+$found_env_param = false;
+$key_env_param = null;
+foreach($argv as $key => $arg){
+    if(strstr($arg, '--env=')) {
+        $env = str_replace('--env=', '', $arg);
+        $found_env_param = true;
+        $key_env_param = $key;
+        break;
+    }
+}
+
+if($found_env_param && !is_null($key_env_param)){
+    unset($argv[$key_env_param]);
+}
+
+$input = new ArgvInput($argv);
+
+const DS = DIRECTORY_SEPARATOR;
+
+$container = new ContainerBuilder();
+$loader = new YamlFileLoader($container, new FileLocator(__DIR__ . DS . 'config' . DS));
+$loader->load("config_{$env}.yml");
+
+$output = $container->get('symfony.console_output');
+$container->setParameter("application.env", $env);
+
+/* @var $application \Symfony\Component\Console\Application */
+$application = $container->get('symfony.application');
+//$files = new DirectoryIterator(__DIR__ . '/../src/SimpleConsole/Command/');
+$dir_src = __DIR__ . DS . '..' . DS . 'src' . DS;
+$application_directories = new DirectoryIterator($dir_src);
+
+foreach ($application_directories as $application_directory) {
+
+    // Skip not a directory
+    if (!$application_directory->isDir()) continue;
+    // Skip not a Command directory
+    if (!file_exists($application_directory->getPathname() . DS . "Command")) continue;
+
+    $command_files = new DirectoryIterator($application_directory->getPathname() . DS . "Command");
+    foreach ($command_files as $command_file) {
+        
+        // Skip dot file
+        if (substr($command_file->getFilename(), 0, 1) === '.') continue;
+
+        $command_class = '\\' . $application_directory->getFilename() . '\\Command\\' . $command_file->getBasename('.php');
+        $ref           = new ReflectionClass($command_class);
+
+        // Skip abstract class
+        if ($ref->isAbstract()) continue;
+        $command = new $command_class();
+        $command->setContainer($container);
+        $application->add($command);
+    }
+}
+$application->run($input, $output);

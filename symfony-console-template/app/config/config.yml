@@ -1,0 +1,7 @@
+imports:
+    - { resource: service.yml }
+
+parameters:
+    application_name: "SymfonyConsoleTemplate"
+    application_version: "1.0.0"
+    wikipedia_api.config.base_url: http://ja.wikipedia.org

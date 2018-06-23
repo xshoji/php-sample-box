@@ -1,0 +1,20 @@
+{
+    "name": "symfony-console-template",
+    "license": "MIT",
+    "require": {
+        "symfony/console": "2.7.*",
+        "symfony/dependency-injection": "2.7.*",
+        "symfony/config": "2.7.*",
+        "symfony/yaml": "2.7.*",
+        "symfony/property-access": "^2.7",
+        "nategood/httpful": "v0.2.20"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": { "": "src" }
+    },
+    "bin": [
+        "app/console"
+    ]
+}

@@ -1,0 +1,19 @@
+services:
+
+    symfony.application:
+        class: Symfony\Component\Console\Application
+        arguments:
+            - "%application_name%"
+            - "%application_version%"
+
+    symfony.console_output:
+        class: Symfony\Component\Console\Output\ConsoleOutput
+
+    #----------------
+    # Sample services
+    #----------------    
+    api_client.wikipedia:
+        class: SymfonyConsoleTemplate\Service\ApiClient\ApiClientWikipedia
+        calls:
+            - [ setBaseUrl, ["%wikipedia_api.config.base_url%"]]
+    
