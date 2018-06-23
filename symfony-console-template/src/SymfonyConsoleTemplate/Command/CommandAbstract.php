@@ -9,8 +9,8 @@ use Symfony\Component\DependencyInjection\Container;
 use SymfonyConsoleTemplate\Utility\Accessor;
 
 /**
- * 
- * @author 
+ *
+ * @author
  * @license MIT (see LICENSE.md)
  */
 abstract class CommandAbstract extends Command
@@ -29,8 +29,8 @@ abstract class CommandAbstract extends Command
      * @var \DateTime
      */
     protected $time_start = null;
-    
-    
+
+
     /**
      * @var array
      */
@@ -108,7 +108,7 @@ abstract class CommandAbstract extends Command
         $this->setArguments($input->getArguments());
         $this->setOptions($input->getOptions());
     }
-    
+
     /**
      * Set user
      *
@@ -130,7 +130,7 @@ abstract class CommandAbstract extends Command
     {
         return Accessor::getValue($this->commandinfo, 'user');
     }
-    
+
     /**
      * Set time_start
      *
@@ -153,7 +153,7 @@ abstract class CommandAbstract extends Command
     {
         return $this->time_start;
     }
-    
+
     /**
      * Get time current.
      *
@@ -186,7 +186,7 @@ abstract class CommandAbstract extends Command
     {
         return $this->getParameter("application.env");
     }
-    
+
     /**
      * Get Host
      *
@@ -218,7 +218,7 @@ abstract class CommandAbstract extends Command
     {
         return Accessor::getValue($this->commandinfo, 'path');
     }
-    
+
     /**
      * Set arguments
      *
@@ -240,7 +240,7 @@ abstract class CommandAbstract extends Command
     {
         return Accessor::getValue($this->commandinfo, 'arguments', array());
     }
-    
+
     /**
      * Set options
      *
@@ -291,9 +291,9 @@ abstract class CommandAbstract extends Command
 
         return $memory_bytes . ' B';
     }
-    
+
     /**
-     * 
+     *
      * @param OutputInterface $output
      * @param array $values
      * @param type $indent
