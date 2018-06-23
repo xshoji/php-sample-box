@@ -1,0 +1,28 @@
+
+### COMMON ###
+config_local.yml
+app/logs/*
+!.gitkeep
+target
+.DS_Store
+
+### PHP ###
+composer.phar
+phar-composer.phar
+app.phar
+vendor
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
