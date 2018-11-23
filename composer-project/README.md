@@ -17,3 +17,11 @@ $ composer install
 ```
 $ php vendor/bin/phpunit tests
 ```
+
+## Other
+
+```
+composer init
+composer require guzzlehttp/guzzle
+composer require phpunit/phpunit --dev
+```

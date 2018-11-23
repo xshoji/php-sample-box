@@ -26,3 +26,4 @@ vendor
 /dist/
 /nbdist/
 /.nb-gradle/
+/composer-project/nbproject/private/

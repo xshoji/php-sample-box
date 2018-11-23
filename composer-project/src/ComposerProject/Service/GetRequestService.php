@@ -4,7 +4,7 @@ namespace ComposerProject\Service;
 
 use \GuzzleHttp\Client;
 
-class WikipediaService
+class GetRequestService
 {
     /**
      *
@@ -12,13 +12,17 @@ class WikipediaService
      */
     protected $client;
 
-    public function __construct(Client $client)
+    /**
+     * 
+     * @param Client $client
+     */
+    function __construct(Client $client)
     {
         $this->client = $client;
     }
     
     public function get(string $uri)
     {
-        return $this->client->get($uri)->getBody();
+        return $this->client->get($uri)->getBody()->getContents();
     }
 }
