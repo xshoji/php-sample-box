@@ -1,0 +1,9 @@
+{
+    "name": "root/composer-project",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.4"
+    }
+}
