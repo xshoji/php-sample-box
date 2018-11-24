@@ -1,10 +1,16 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-use GuzzleHttp\Client;
 use ComposerProject\Service\GetRequestService;
 
-$client = new Client(["base_uri" => "http://httpbin.org"]);
+$config_directory = __DIR__ . DIRECTORY_SEPARATOR . "config";
+$config_path = $config_directory . "/parameters.ini";
+
+$config = parse_ini_file($config_path);
+var_dump($config);
+
+
+$client = new $config["guzzleclient"](["base_uri" => "http://httpbin.org"]);
 $service = new GetRequestService($client);
 $result = $service->get("/get");
 var_dump($result);

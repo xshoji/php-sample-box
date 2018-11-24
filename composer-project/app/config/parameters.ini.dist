@@ -1,0 +1,3 @@
+[dependency_clas]
+;guzzleclient = "ComposerProject\Client\ClientMock"
+guzzleclient = "GuzzleHttp\Client"

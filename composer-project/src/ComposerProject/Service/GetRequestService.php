@@ -2,7 +2,7 @@
 
 namespace ComposerProject\Service;
 
-use \GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 class GetRequestService
 {
@@ -14,18 +14,15 @@ class GetRequestService
 
     /**
      * 
-     * @param Client $client
+     * @param ClientInterface $client
      */
-    function __construct(Client $client)
+    function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
     
     public function get(string $uri)
     {
-        return $this->client->get($uri)->getBody()->getContents();
+        return $this->client->request("get", $uri)->getBody()->getContents();
     }
-
-
-
 }

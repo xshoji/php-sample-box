@@ -12,7 +12,6 @@ phar-composer.phar
 app.phar
 vendor
 
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -20,10 +19,14 @@ vendor
 *.ipr
 
 ### NetBeans ###
-/nbproject/private/
+/nbproject/
 /build/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 /composer-project/nbproject/private/
+
+#### App ####
+
+*/parameters.ini
