@@ -25,4 +25,7 @@ class GetRequestService
     {
         return $this->client->get($uri)->getBody()->getContents();
     }
+
+
+
 }
